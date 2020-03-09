@@ -9,17 +9,17 @@
 
 
 # Introduction
-**Decentralized_loam** is the implemental code of our paper "A decentralized framework for simultaneous calibration, localization and mapping with multiple LiDARs", which is developed based on our previous work [Loam-livox](https://github.com/hku-mars/loam_livox). Our project fuses data from multiple LiDARs in a decentralized framework, which can not only address the problem of localization and mapping, but can also online calibrate the extrinsic of 6-DoF (includes 3-DoF of rotation and 3-DoF of translation). 
+**Decentralized_loam** is the code implementation of our paper "A decentralized framework for simultaneous calibration, localization and mapping with multiple LiDARs", which is developed based on our previous work [Loam-livox](https://github.com/hku-mars/loam_livox). Our project fuses data from multiple LiDARs in a decentralized framework, which can not only address the problem of localization and mapping, but can also online calibrate the extrinsic of 6-DoF (includes 3-DoF of rotation and 3-DoF of translation). 
 
 **Developer:** [Jiarong Lin](https://github.com/ziv-lin)
 
-**Our related video**: our related videos are now available on YouTube (click below images to open):
+**Our related video**: our related videos are now available on YouTube (click below image to open):
 <div align="center">
 <a href="https://youtu.be/n8r4ch8h8oo" target="_blank"><img src="./pics/title.png" alt="video" width="60%" /></a>
 </div>
 
 # Our hardware design
-Not only our codes and algorithms are of open-source, but also including our hardware design. You can visit this project ([https://github.com/hku-mars/lidar_car_platfrom](https://github.com/hku-mars/lidar_car_platfrom)) for more details :)
+Not only our codes and algorithms are of open-source, but also our hardware design. You can visit this project ([https://github.com/hku-mars/lidar_car_platfrom](https://github.com/hku-mars/lidar_car_platfrom)) for more details :)
 
 <div align="center">
     <a href="https://github.com/hku-mars/lidar_car_platfrom" target="_blank"><img src="./pics/1.png" width = 45% >
