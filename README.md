@@ -1,5 +1,8 @@
 # Decentralized_loam
-* The code will be released soon.
+Our paper is accepted to IROS 2020 and is now available on Arxiv:  
+[A decentralized framework for simultaneous calibration, localization and mapping with multiple LiDARs](https://arxiv.org/abs/2007.01483)
+
+**Notice**: Our code will be released before 30 November 2020 since I have a busy time schedule in these months.
 ## A decentralized framework for simultaneous calibration, localization and mapping with multiple LiDARs
 
 <div align="center">
