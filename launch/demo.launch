@@ -1,0 +1,52 @@
+<launch>
+    <rosparam command="load" file="$(find dc_loam)/config/demo_config.yaml" />
+    <param name="common/pcd_save_dir" type="string" value="$(env HOME)/Loam_livox" />
+    <param name="common/log_save_dir" type="string" value="$(env HOME)/Loam_livox" />
+    <param name="common/loop_save_dir" type="string" value="$(env HOME)/Loam_livox" />
+    <param name="common/piecewise_number" type="int" value="3" />
+    <param name="common/if_multiple_lidar" type="int" value="1" />
+
+    <param name="common/if_verbose_screen_printf" type="int" value="1"/>
+
+    <param name="optimization/max_allow_incre_R" type="double" value="20"/>
+    <param name="optimization/max_allow_incre_T" type="double" value="10.0"/>
+    <param name="optimization/max_allow_final_cost" type="double" value="2.0"/>
+
+    <param name="mapping/maximum_pointcloud_delay_time" type="double" value="0.5"/>
+    <param name="mapping/if_load_extrinsic" type="int" value="1" />
+
+    <param name="loop_closure/if_enable_loop_closure" type="int" value="0"/>
+
+    <node pkg="dc_loam" type="laser_feature_extraction" name="laser_feature_extraction" output="screen">
+
+     <!-- "Fron Mid100, with three topic" -->
+     <remap from="/laser_points_0" to="/livox/lidar_1LVDG1S006J5GZ2" />
+     <remap from="/laser_points_1" to="/livox/lidar_1LVDG1S006J5GZ1" />
+     <remap from="/laser_points_2" to="/livox/lidar_1LVDG1S006J5GZ3" />
+     <!-- "Back left" -->
+     <remap from="/laser_points_3" to="/livox/lidar_0TFDG3U99101321" />  
+     <!-- "Back right" -->
+     <remap from="/laser_points_4" to="/livox/lidar_0TFDFCE00502781" /> 
+     <!-- "front left" -->
+     <remap from="/laser_points_5" to="/livox/lidar_0TFDFG700602671" />
+     <!-- "front right" -->
+     <remap from="/laser_points_6" to="/livox/lidar_0TFDFG700602921" />
+    </node> 
+
+    <rosparam param="Lidar_extrinsic">      <!-- The extrinsic of 5 LiDAR, Format: q_x, q_y, q_z, q_w, t_z, t_y, t_z -->
+        [0, 0, 0, 1, 0, 0, 0,               <!-- Front LiDAR (Livox mid100) -->
+        0.037862, 0.028444, 0.96528, 0.25688, -0.3, +0.2, -0.15,    <!-- Back left LiDAR (Livox mid40) -->
+        -0.048159, 0.030488, -0.96543, 0.25437, -0.3, -0.2, -0.15,  <!-- Back right LiDAR (Livox mid40) -->
+        0.51831, 0.48848, 0.53099, 0.45912, +0.1, +0.1, -0.10,      <!-- front left LiDAR (Livox mid40) -->
+        -0.55747, 0.44222, -0.53777, 0.4522, +0.1, -0.1, -0.10      <!-- front right LiDAR (Livox mid40) -->
+         ]       
+    </rosparam>
+
+    <node pkg="dc_loam" type="laser_mapping" name="laser_mapping" output="screen" />
+
+    <arg name="rviz" default="true" />
+    <group if="$(arg rviz)">
+        <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find dc_loam)/rviz_cfg/rosbag_c.rviz" />
+    </group>
+
+</launch>

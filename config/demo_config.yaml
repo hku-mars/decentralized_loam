@@ -1,0 +1,66 @@
+common:
+    lidar_type: "livox"
+    maximum_parallel_thread: 1      # number of thread use for interative pose optimization
+    odom_mode: 1
+    if_motion_deblur: 0             # motion deblur, 0: piesewise processing; 1: linear interpolation
+    if_save_to_pcd_files: 0
+    if_update_mean_and_cov_incrementally: 0
+    threshold_cell_revisit: 2000000    # if update frame index bigger than this threshold, treat target cell as revisited
+
+feature_extraction:
+    scan_line: 64
+    mapping_line_resolution:  0.6
+    mapping_plane_resolution: 0.4
+    livox_min_sigma: 7e-4
+    livox_min_dis: 1.0
+    corner_curvature: 0.1
+    surface_curvature: 0.005
+    minimum_view_angle: 5
+
+optimization:
+    if_use_kalman_filter_prediction: 0
+    minimum_icp_R_diff: 0.005
+    minimum_icp_T_diff: 0.01
+    maximum_residual_blocks: 400
+    max_allow_final_cost: 1.0
+    icp_maximum_iteration: 10
+    ceres_maximum_iteration: 2
+    threshold_degenerate: 0.000001
+    degenerate_direction: 1
+
+mapping:
+    matching_mode: 1            # 0 = history, 1 = cube
+    feature_downsample_scale: 1.0
+    pub_path_downsample_scale: 1.0
+    matching_force_update: 0
+    input_downsample_mode: 1    #
+    init_accumulate_frames: 50
+    maximum_mapping_buffer: 20000000
+    maximum_histroy_buffer: 1000000
+    maximum_in_fov_angle: 360
+    maximum_pointcloud_delay_time: 0.5
+    maximum_search_range_corner: 50
+    maximum_search_range_surface: 200
+    surround_pointcloud_resolution: 1.0
+    max_allow_incre_R: 20
+    max_allow_incre_T: 0.3
+    max_allow_final_cost: 2.0
+
+lidar_fusion:
+    minimum_overlap_cell_number: 5000
+
+loop_closure:
+    if_enable_loop_closure: 0
+    if_dump_keyframe_data: 0
+    scans_of_each_keyframe: 300
+    scans_between_two_keyframe: 100
+    init_accumulate_frames: -1
+    minimum_keyframe_differen: 200
+    minimum_similarity_linear: 0.65
+    minimum_similarity_planar: 0.94
+    map_alignment_resolution: 0.1
+    maximum_keyframe_in_waiting_list: 10
+    map_alignment_maximum_icp_iteration: 5
+    map_alignment_inlier_threshold: 0.20
+    map_alignment_if_dump_matching_result: 0
+    scene_alignment_maximum_residual_block: 3000
